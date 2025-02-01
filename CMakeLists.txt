@@ -35,22 +35,24 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Tarefa1-Temporizador_periodico main.c )
+add_executable(Tarefa1-Temporizador_periodico main.c src/semafaro.c)
 
 pico_set_program_name(Tarefa1-Temporizador_periodico "Tarefa1-Temporizador_periodico")
 pico_set_program_version(Tarefa1-Temporizador_periodico "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(Tarefa1-Temporizador_periodico 0)
-pico_enable_stdio_usb(Tarefa1-Temporizador_periodico 0)
+pico_enable_stdio_usb(Tarefa1-Temporizador_periodico 1)
 
 # Add the standard library to the build
 target_link_libraries(Tarefa1-Temporizador_periodico
-        pico_stdlib)
+        pico_stdlib
+        )
 
 # Add the standard include files to the build
 target_include_directories(Tarefa1-Temporizador_periodico PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_SOURCE_DIR}/include
 )
 
 # Add any user requested libraries
@@ -59,4 +61,3 @@ target_link_libraries(Tarefa1-Temporizador_periodico
         )
 
 pico_add_extra_outputs(Tarefa1-Temporizador_periodico)
-
